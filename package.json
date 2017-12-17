@@ -1,0 +1,20 @@
+{
+  "name": "type-reverse",
+  "version": "1.0.0",
+  "description": "Lightweight reverse utility for strings, arrays and numbers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whizkydee/type-reverse.git"
+  },
+  "keywords": [ "array", "string", "number", "reverse", "inverse", "opposite", "integer" ],
+  "author": "Olaolu Olawuyi <mrolaolu@gmail.com> (https://twitter.com/mrolaolu)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whizkydee/type-reverse/issues"
+  },
+  "homepage": "https://github.com/whizkydee/type-reverse#readme"
+}
