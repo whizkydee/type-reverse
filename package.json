@@ -1,20 +1,48 @@
 {
   "name": "type-reverse",
   "version": "1.0.0",
-  "description": "Lightweight reverse utility for strings, arrays and numbers.",
-  "main": "index.js",
+  "description": "Lightweight reverse utility around strings, arrays, numbers and more.",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint source spec/index.js",
+    "test": "jasmine",
+    "build": "babel source --out-dir dist",
+    "start": "npm run lint && npm run build && npm test",
+    "prepublish": "npm run start"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/whizkydee/type-reverse.git"
   },
-  "keywords": [ "array", "string", "number", "reverse", "inverse", "opposite", "integer" ],
+  "keywords": [
+    "array",
+    "string",
+    "number",
+    "reverse",
+    "invert",
+    "inverse",
+    "opposite",
+    "integer"
+  ],
   "author": "Olaolu Olawuyi <mrolaolu@gmail.com> (https://twitter.com/mrolaolu)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/whizkydee/type-reverse/issues"
   },
-  "homepage": "https://github.com/whizkydee/type-reverse#readme"
+  "homepage": "https://github.com/whizkydee/type-reverse#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-plugin-minify-dead-code-elimination": "^0.2.0",
+    "babel-plugin-minify-flip-comparisons": "^0.2.0",
+    "babel-plugin-minify-guarded-expressions": "^0.2.0",
+    "babel-plugin-minify-simplify": "^0.2.0",
+    "babel-plugin-transform-inline-consecutive-adds": "^0.2.0",
+    "babel-plugin-transform-merge-sibling-variables": "^6.8.6",
+    "babel-plugin-transform-minify-booleans": "^6.8.3",
+    "babel-preset-env": "^1.6.1",
+    "chalk": "^2.3.0",
+    "eslint": "^4.13.1",
+    "jasmine": "^2.8.0"
+  }
 }
