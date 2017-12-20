@@ -1,5 +1,5 @@
 // A smarter `typeof` function
-export const typeOf = v =>
+const typeOf = v =>
   v === undefined ? 'undefined' : v === null ? 'null' : v.constructor.name.toLowerCase();
 
 // object map for typeOf checks.
@@ -15,5 +15,7 @@ const is = {
 };
 
 // supported types
-export const supportedTypes = i =>
+const supportedTypes = i =>
   is.string(i) || is.number(i) || is.nodelist(i) || is.array(i) || is.boolean(i);
+
+export { typeOf, supportedTypes };

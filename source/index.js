@@ -26,7 +26,6 @@ import {
 import { arrVerse } from './array-reverse';
 
 function reverse(input, callback) {
-  // throw an error if the input isn't among the supported types
   if (!supportedTypes(input))
     throw new TypeError(`Failed to apply 'reverse': ${typeOf(input)}s are not supported`);
 
