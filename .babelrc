@@ -8,5 +8,5 @@
     "transform-merge-sibling-variables",
     "minify-simplify"
   ],
-  "comments": false
+  "comments": true
 }
