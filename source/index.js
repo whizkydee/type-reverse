@@ -10,76 +10,64 @@
 /**
  * Lightweight reverse utility around strings, arrays, numbers and more.
  *
- * ```js
- * reverse('pizza')
- * //=> "azzip"
- *
- * const text = 'I love cats'
- * reverse(text, (original, after) => {
- *   return `${original} was reversed to: ${after}`
- * })
- * //=> "I love cats was reversed to: stac evol I"
- * ```
- *
  * @name reverse
  * @alias inverse
- * @param {String|Number|Array|NodeList} `input`
+ * @param {String|Number|Array|NodeList|Boolean} `input`
  * @param {Function} `callback`
  * @return {undefined}
  * @api public
  */
 
-import { is, typeOf } from './is';
-import arrVerse from './array-reverse';
+import {
+  typeOf,
+  supportedTypes
+} from './is';
+
+import { arrVerse } from './array-reverse';
 
 function reverse(input, callback) {
   // throw an error if the input isn't among the supported types
-  if (
-    !is.string(input) &&
-    !is.number(input) &&
-    !is.nodelist(input) &&
-    !is.array(input)
-  ) throw new TypeError(`the reverse function cannot be executed on ${typeOf(input)}s`);
+  if (!supportedTypes(input))
+    throw new TypeError(`Failed to apply 'reverse': ${typeOf(input)}s are not supported`);
 
-  let reversed;
-
+  let result;
   switch (typeOf(input)) {
     case 'string':
-      reversed = [...input].reverse().join('');
+      result = [...input].reverse().join('');
     break;
 
     case 'number':
       // convert the number to string then replace the minus(-) symbol with nothing
-      const nStr = reverse(String(input),
-        (undefined, after) => after.replace(/-$/, ''));
+      const nStr = String(input).replace(/^-/, '');
 
-      // since `-` has been replaced earlier, check if the number input actually contains...
-      // a minus(-). if yes, insert a minus symbol at the beginning of the string...
-      // otherwise, just convert the steing to a number.
-      if (/^-/.test(input))
-        reversed = Number(`-${nStr}`);
-      else
-        reversed = Number(nStr);
+      if (/e\w/.test(nStr)) {
+        throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/dev/readme.md#limits for more info.');
+      }
+      result = (/^-/.test(input)) ? Number(`+${nStr}`) : Number(`-${nStr}`);
     break;
 
     case 'array':
     case 'nodelist':
-      reversed = arrVerse(input);
+      result = arrVerse(input);
+    break;
+
+    case 'boolean':
+      result = !input;
     break;
 
     default:
-      reversed = reverse(input);
+      result = reverse(input);
     break;
   }
-  if ( is.function(callback) )
-    return callback.apply(this, [input, reversed]);
-  else if ( callback && !is.function(callback) )
-    throw new TypeError(`Expected function as argument, got ${typeOf(callback)} instead.`);
 
-  return reversed;
+  if (typeof callback === 'function') {
+    return callback(input, result);
+  } else if (callback && typeof callback !== 'function') {
+    throw new TypeError(
+      `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(callback)}.`
+    );
+  }
+  return result;
 }
 
-export default reverse;
-
 module.exports = reverse;
-module.exports.default = reverse;
