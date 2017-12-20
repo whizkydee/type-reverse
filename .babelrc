@@ -2,7 +2,6 @@
   "presets": ["env"],
   "plugins": [
     "transform-minify-booleans",
-    "transform-inline-consecutive-adds",
     "minify-dead-code-elimination",
     "minify-flip-comparisons",
     "minify-guarded-expressions",
