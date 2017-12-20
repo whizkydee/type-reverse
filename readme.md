@@ -24,7 +24,7 @@ const reverse = require('type-reverse')
 
 **Params**
 
-* `input` **{String|Number|Array|NodeList}**
+* `input` **{String|Number|Array|NodeList|Boolean}**
 * `callback` **{Function}**
 * `returns` **{undefined}**
 
@@ -32,16 +32,31 @@ const reverse = require('type-reverse')
 reverse('pizza')
 //=> "azzip"
 
+reverse('🦄🐴')
+//=> "🐴🦄"
+
 reverse(1234)
-//=> 4321
+//=> -1234
 
 reverse(-1234)
-//=> -4321
+//=> 1234
+```
+
+## Booleans
+
+I can't think of any reason why you would use this utility to reverse booleans when you can reverse them with a single not operator `!`, but for the record, this utility supports reversing booleans even though I personally consider it a bad practice.
+
+```js
+reverse(true)
+//=> false
+
+reverse(!1)
+//=> true
 ```
 
 ## Non-destructive array reverse
 
-When JavaScript's `Array.prototype.reverse()` method is used on arrays, the output of the array when reversed gets written into the original array, this is termed, **destructive array reversal**. Meanwhile with this utility, **non-destructive array reversal** is adopted, which means the `reverse()` function returns the reversed array and still retains the elements of the original array.
+When JavaScript's `Array.prototype.reverse()` method is used on arrays, the output of the array when reversed gets written into the original array, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still retains the elements of the original array without making any changes to it.
 
 ```js
 const arr = ['a', 'b', 'c']
@@ -53,7 +68,7 @@ console.log(arr)
 //=> ['a', 'b', 'c']
 ```
 
-## `callback`
+### `callback`
 
 The callback function accepts two optional parameters; `original` and/or `after`.
 * `original` - the initial input that was passed into the function
@@ -66,7 +81,17 @@ reverse(text, (original, after) => {
   return `${original} was reversed to: ${after}`
 })
 //=> "I love cats was reversed to: stac evol I"
+```
 
+#### Manipulating stuff
+
+```js
+const text = 'I used to hate cats'
+
+reverse(text, str => {
+  return `${str}, but now ${str.replace('used to hate cats', `love 'em`)}`
+})
+//=> "I used to hate cats, but now I love 'em"
 ```
 
 
