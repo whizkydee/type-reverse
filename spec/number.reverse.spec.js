@@ -1,6 +1,6 @@
 'use strict';
 
-const reverse = require('../distribution/index');
+const reverse = require('../dist/index');
 
 describe('reverse({ Number })', () => {
   it('should reverse a positive number and return the result', () => {

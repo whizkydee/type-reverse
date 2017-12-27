@@ -1,31 +1,23 @@
 {
   "name": "type-reverse",
   "version": "1.0.0",
+  "repository": "whizkydee/type-reverse",
   "description": "Lightweight reverse utility around strings, arrays, numbers and more.",
-  "main": "./distribution/index.js",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.0.3",
-    "babel-plugin-minify-dead-code-elimination": "^0.2.0",
-    "babel-plugin-minify-flip-comparisons": "^0.2.0",
-    "babel-plugin-minify-guarded-expressions": "^0.2.0",
-    "babel-plugin-minify-simplify": "^0.2.0",
-    "babel-plugin-transform-merge-sibling-variables": "^6.8.6",
-    "babel-plugin-transform-minify-booleans": "^6.8.3",
-    "babel-preset-env": "^1.6.1",
-    "eslint": "^4.13.1",
-    "jasmine": "^2.8.0"
+  "author": {
+    "name": "Olaolu Olawuyi",
+    "email": "mrolaolu@gmail.com",
+    "url": "https://twitter.com/mrolaolu"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/whizkydee/type-reverse#readme",
   "scripts": {
-    "lint": "eslint source spec/index.js",
+    "lint": "eslint source spec",
     "test": "jasmine",
-    "build": "babel ./source --out-dir ./distribution",
-    "start": "npm run lint && npm run build && npm test"
+    "build": "babel source --out-dir dist",
+    "start": "npm run lint && npm run build && npm test",
+    "prepublish": "npm run build && del spec"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/whizkydee/type-reverse.git"
-  },
+  "files": ["dist"],
   "keywords": [
     "array",
     "arruys",
@@ -37,7 +29,7 @@
     "numbers",
     "reverse",
     "invert",
-    "invertion",
+    "inversion",
     "reversal",
     "undo",
     "inverse",
@@ -45,10 +37,21 @@
     "integer",
     "integers"
   ],
-  "author": "Olaolu Olawuyi <mrolaolu@gmail.com> (https://twitter.com/mrolaolu)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/whizkydee/type-reverse/issues"
-  },
-  "homepage": "https://github.com/whizkydee/type-reverse#readme"
+  "engines": {
+	  "node": ">=4"
+	},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-plugin-minify-dead-code-elimination": "^0.2.0",
+    "babel-plugin-minify-flip-comparisons": "^0.2.0",
+    "babel-plugin-minify-guarded-expressions": "^0.2.0",
+    "babel-plugin-minify-simplify": "^0.2.0",
+    "babel-plugin-transform-merge-sibling-variables": "^6.8.6",
+    "babel-plugin-transform-minify-booleans": "^6.8.3",
+    "babel-preset-env": "^1.6.1",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.13.1",
+    "jasmine": "^2.8.0"
+  }
 }

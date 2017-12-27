@@ -1,5 +1,5 @@
 # type-reverse
-<!-- [![Build Status](https://travis-ci.org/whizkydee/type-reverse.svg?branch=master)](https://travis-ci.org/whizkydee/type-reverse) -->
+[![Build Status](https://travis-ci.org/whizkydee/type-reverse.svg?branch=master)](https://travis-ci.org/whizkydee/type-reverse)
 
 > Lightweight reverse utility around strings, arrays, numbers and more.
 
@@ -44,7 +44,7 @@ reverse(-1234)
 
 ## Booleans
 
-I can't think of any reason why you would use this utility to reverse booleans when you can reverse them with a single not operator `!`, but for the record, this utility supports reversing booleans even though I personally consider it a bad practice.
+I don't think there's any reason you would use this utility to reverse booleans when you can reverse them with a single not operator `!`, but for the record, this utility supports reversing booleans even though I consider it a bad practice.
 
 ```js
 reverse(true)

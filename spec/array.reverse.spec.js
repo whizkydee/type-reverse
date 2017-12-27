@@ -1,6 +1,6 @@
 'use strict';
 
-const reverse = require('../distribution/index');
+const reverse = require('../dist/index');
 
 describe('reverse({ Array })', () => {
   it('should reverse an array of strings and return the result', () => {

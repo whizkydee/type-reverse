@@ -1,6 +1,6 @@
 'use strict';
 
-const reverse = require('../distribution/index');
+const reverse = require('../dist/index');
 
 describe('reverse({Boolean})', () => {
   it('should reverse `false` and return `true`', () => {

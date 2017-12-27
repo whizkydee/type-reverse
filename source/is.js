@@ -14,7 +14,6 @@ const is = {
   boolean:   i => typeOf(i) === 'boolean'
 };
 
-// supported types
 const supportedTypes = i =>
   is.string(i) || is.number(i) || is.nodelist(i) || is.array(i) || is.boolean(i);
 
