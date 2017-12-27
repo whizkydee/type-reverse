@@ -23,7 +23,7 @@ import {
   supportedTypes
 } from './is';
 
-import { arrVerse } from './array-reverse';
+import { arrVerse } from './arrverse';
 
 function reverse(input, callback) {
   if (!supportedTypes(input))
