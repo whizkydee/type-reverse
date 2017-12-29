@@ -4,4 +4,4 @@ source
 .editorconfig
 .npmrc
 .gitignore
-spec
+__tests__

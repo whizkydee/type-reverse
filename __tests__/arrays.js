@@ -1,8 +1,6 @@
-'use strict';
-
 const reverse = require('../dist/index');
 
-describe('Reverse Arrays', () => {
+describe('Array Reverse', () => {
   it('should reverse an array of strings and return the result',
     () => {
       const arr = ['I', 'would', 'love', 'to', 'have', 'some fun'];

@@ -11,9 +11,9 @@
   "license": "MIT",
   "homepage": "https://github.com/whizkydee/type-reverse#readme",
   "scripts": {
-    "lint": "eslint source spec",
-    "test": "jasmine",
     "build": "babel source --out-dir dist",
+    "lint": "eslint src __tests__",
+    "test": "jest",
     "start": "npm run lint && npm run build && npm test",
     "prepublish": "npm run build && del spec"
   },
@@ -40,6 +40,11 @@
   "engines": {
 	  "node": ">=4"
 	},
+    "node": ">=4"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.3",
@@ -52,6 +57,6 @@
     "babel-preset-env": "^1.6.1",
     "del-cli": "^1.1.0",
     "eslint": "^4.13.1",
-    "jasmine": "^2.8.0"
+    "jest-cli": "^22.0.4"
   }
 }

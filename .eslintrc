@@ -2,7 +2,7 @@
  "root": true,
  "env": {
    "commonjs": true,
-   "jasmine": true,
+   "jest": true,
    "node": true,
    "es6": true
  },
