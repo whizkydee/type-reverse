@@ -2,7 +2,7 @@
 
 const reverse = require('../dist/index');
 
-describe('reverse({Boolean})', () => {
+describe('Reverse Booleans', () => {
   it('should reverse `false` and return `true`', () => {
     const boolean = false;
     const boolean2 = !1;

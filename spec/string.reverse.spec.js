@@ -2,7 +2,7 @@
 
 const reverse = require('../dist/index');
 
-describe('reverse({ String })', () => {
+describe('Reverse Strings', () => {
   it('should reverse a string and return the result', () => {
     const text = reverse('pizza');
     expect(text).toBe('azzip');

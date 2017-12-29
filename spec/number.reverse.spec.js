@@ -2,7 +2,7 @@
 
 const reverse = require('../dist/index');
 
-describe('reverse({ Number })', () => {
+describe('Reverse Numbers', () => {
   it('should reverse a positive number and return the result', () => {
     const positiveNumber = reverse(1234);
     expect(positiveNumber).toEqual(-1234);
