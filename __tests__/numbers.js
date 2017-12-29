@@ -1,4 +1,4 @@
-const reverse = require('../dist/index');
+import reverse from '../dist/index';
 
 describe('Number Reverse', () => {
   test('should reverse a positive number and return the result', () => {

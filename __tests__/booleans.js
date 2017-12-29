@@ -1,4 +1,4 @@
-const reverse = require('../dist/index');
+import reverse from '../dist/index';
 
 describe('Boolean Reverse', () => {
   test('should reverse `false` and return `true`', () => {

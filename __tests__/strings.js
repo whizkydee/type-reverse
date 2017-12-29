@@ -1,4 +1,4 @@
-const reverse = require('../dist/index');
+import reverse from '../dist/index';
 
 describe('String Reverse', () => {
   test('should reverse a string and return the result', () => {

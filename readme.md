@@ -37,17 +37,11 @@ reverse('🐆🐕')
 //=> "🐕🐆"
 ```
 
-```js
-reverse(1234)
-//=> -1234
-
-reverse(-1234)
-//=> 1234
-```
+_Note that reversing numbers with this utility just changes the signs._
 
 ## Booleans
 
-I don't see why you would use this utility to reverse booleans when you can reverse them with a single not operator `!`, but for the record, this utility supports reversing booleans even though I consider it a bad practice.
+For the record, this utility supports reversing booleans. I consider it a bad practice though.
 
 ```js
 reverse(true)

@@ -73,4 +73,5 @@ function reverse(input, callback) {
   return result;
 }
 
+export default reverse;
 module.exports = reverse;
