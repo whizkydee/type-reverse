@@ -11,13 +11,15 @@
   "license": "MIT",
   "homepage": "https://github.com/whizkydee/type-reverse#readme",
   "scripts": {
-    "build": "babel source --out-dir dist",
     "lint": "eslint src __tests__",
     "test": "jest",
+    "build": "babel src --out-dir dist",
     "start": "npm run lint && npm run build && npm test",
-    "prepublish": "npm run build && del spec"
+    "prepublishOnly": "npm run build"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "array",
     "arruys",
@@ -38,8 +40,6 @@
     "integers"
   ],
   "engines": {
-	  "node": ">=4"
-	},
     "node": ">=4"
   },
   "jest": {

@@ -3,3 +3,6 @@ node_js:
   - '8'
   - '6'
   - '4'
+
+before_deploy:
+  - npm run build

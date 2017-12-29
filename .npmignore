@@ -1,5 +1,5 @@
 .vscode
-source
+src
 .eslintrc.json
 .editorconfig
 .npmrc
