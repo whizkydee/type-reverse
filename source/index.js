@@ -23,16 +23,18 @@ import {
   supportedTypes
 } from './is';
 
-import { arrVerse } from './arrverse';
-
 function reverse(input, callback) {
   if (!supportedTypes(input))
     throw new TypeError(`Failed to apply 'reverse': ${typeOf(input)}s are not supported`);
 
+  // create a new array, copy the items of the initial into the new
+  // then reverse the newly created array.
+  let globArr = [...input].reverse();
   let result;
+
   switch (typeOf(input)) {
     case 'string':
-      result = [...input].reverse().join('');
+      result = globArr.join('');
     break;
 
     case 'number':
@@ -47,7 +49,7 @@ function reverse(input, callback) {
 
     case 'array':
     case 'nodelist':
-      result = arrVerse(input);
+      result = globArr;
     break;
 
     case 'boolean':
@@ -61,7 +63,9 @@ function reverse(input, callback) {
 
   if (typeof callback === 'function') {
     return callback(input, result);
-  } else if (callback && typeof callback !== 'function') {
+  } else if (callback &&
+      typeof callback !== 'function'
+  ) {
     throw new TypeError(
       `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(callback)}.`
     );
