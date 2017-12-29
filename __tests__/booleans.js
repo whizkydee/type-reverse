@@ -1,4 +1,4 @@
-import reverse from '../dist/index';
+import reverse from '../build/index';
 
 describe('Boolean Reverse', () => {
   test('should reverse `false` and return `true`', () => {
@@ -7,11 +7,11 @@ describe('Boolean Reverse', () => {
     expect(reverse(boolean)).toBeTruthy();
     expect(reverse(boolean2)).toBeTruthy();
   });
-  
+
   test('should reverse `true` and return `false`', () => {
     const boolean = true;
     const boolean2 = !0;
     expect(reverse(boolean)).toBeFalsy();
     expect(reverse(boolean2)).toBeFalsy();
-  });  
+  });
 });

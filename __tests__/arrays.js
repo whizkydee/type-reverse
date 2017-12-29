@@ -1,4 +1,4 @@
-import reverse from '../dist/index';
+import reverse from '../build/index';
 
 describe('Array Reverse', () => {
   it('should reverse an array of strings and return the result',
