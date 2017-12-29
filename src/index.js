@@ -13,7 +13,7 @@
  * @name reverse
  * @alias inverse
  * @param {String|Number|Array|NodeList|Boolean} `input`
- * @param {Function} `callback`
+ * @param {Object} `options`
  * @return {undefined}
  * @api public
  */
@@ -21,11 +21,19 @@
 import {
   typeOf,
   supportedTypes
-} from './is';
+} from './util/is';
 
-function reverse(input, callback) {
+function reverse(input, options = {}) {
   if (!supportedTypes(input))
     throw new TypeError(`Failed to apply 'reverse': ${typeOf(input)}s are not supported`);
+
+  const opts = {
+    then: options.then || function(before, after) {
+      return after;
+    },
+    invert: options.invert || 'character',
+    bigInt: options.bigInt || false
+  };
 
   // create a new array, copy the items of the initial into the new
   // then reverse the newly created array.
@@ -34,14 +42,15 @@ function reverse(input, callback) {
 
   switch (typeOf(input)) {
     case 'string':
-      result = globArr.join('');
+      if (opts.invert === 'character') result = globArr.join('');
+      else if (opts.invert === 'word') result = input.split(' ').reverse().join(' ');
     break;
 
     case 'number':
       // convert the number to string then replace the minus(-) symbol with nothing
       const nStr = String(input).replace(/^-/, '');
 
-      if (/e\w/.test(nStr)) {
+      if (/e/.test(nStr)) {
         throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/dev/readme.md#limits for more info.');
       }
       result = (/^-/.test(input)) ? Number(`+${nStr}`) : Number(`-${nStr}`);
@@ -61,13 +70,13 @@ function reverse(input, callback) {
     break;
   }
 
-  if (typeof callback === 'function') {
-    return callback(input, result);
-  } else if (callback &&
-      typeof callback !== 'function'
+  if (typeof options.then === 'function') {
+    return options.then(input, result);
+  } else if (options.then &&
+      typeof options.then !== 'function'
   ) {
     throw new TypeError(
-      `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(callback)}.`
+      `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(options.then)}.`
     );
   }
   return result;
