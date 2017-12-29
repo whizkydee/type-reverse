@@ -1,5 +1,6 @@
 # type-reverse
-[![Build Status](https://travis-ci.org/whizkydee/type-reverse.svg?branch=master)](https://travis-ci.org/whizkydee/type-reverse)
+
+[![Build Status](https://api.travis-ci.com/whizkydee/type-reverse.svg?token=zXdJsUqADmau83i9KNqF&branch=dev)](https://travis-ci.org/whizkydee/type-reverse) [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest) [![Made in Nigeria](https://img.shields.io/badge/made%20in-nigeria-008751.svg)](https://github.com/acekyd/made-in-nigeria)
 
 > Lightweight reverse utility around strings, arrays, numbers and more.
 
@@ -32,9 +33,11 @@ const reverse = require('type-reverse')
 reverse('pizza')
 //=> "azzip"
 
-reverse('🦄🐴')
-//=> "🐴🦄"
+reverse('🐆🐕')
+//=> "🐕🐆"
+```
 
+```js
 reverse(1234)
 //=> -1234
 
@@ -44,7 +47,7 @@ reverse(-1234)
 
 ## Booleans
 
-I don't think there's any reason you would use this utility to reverse booleans when you can reverse them with a single not operator `!`, but for the record, this utility supports reversing booleans even though I consider it a bad practice.
+I don't see why you would use this utility to reverse booleans when you can reverse them with a single not operator `!`, but for the record, this utility supports reversing booleans even though I consider it a bad practice.
 
 ```js
 reverse(true)
