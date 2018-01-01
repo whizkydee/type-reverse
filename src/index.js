@@ -1,7 +1,7 @@
 /*!
  * type-reverse <https://github.com/whizkydee/type-reverse>
  *
- * Copyright (c) 2017, Olaolu Olawuyi.
+ * Copyright (c) 2017-present, Olaolu Olawuyi.
  * Released under the MIT License.
  */
 
@@ -13,7 +13,7 @@
  * @name reverse
  * @alias inverse
  * @param {String|Number|Array|NodeList|Boolean} `input`
- * @param {Object} `options`
+ * @param {?Object} `options`
  * @return {undefined}
  * @api public
  */
@@ -24,36 +24,52 @@ import {
 } from './util/is';
 
 function reverse(input, options = {}) {
-  if (!supportedTypes(input))
-    throw new TypeError(`Failed to apply 'reverse': ${typeOf(input)}s are not supported`);
+  if (!supportedTypes(input)) throw new TypeError(
+    `Failed to apply 'reverse': ${typeOf(input)}s are not supported`
+  );
 
+  // map the options!
   const opts = {
-    then: options.then || function(before, after) {
-      return after;
-    },
+    bigInt: options.bigInt || false,
     invert: options.invert || 'character',
-    bigInt: options.bigInt || false
+    then: options.then || ((_, v) => v)
   };
 
   // create a new array, copy the items of the initial into the new
-  // then reverse the newly created array.
-  let globArr = [...input].reverse();
+  // then reverse the new array.
+  const globArr = [...input].reverse();
   let result;
 
-  switch (typeOf(input)) {
+  switch ( typeOf(input) ) {
     case 'string':
-      if (opts.invert === 'character') result = globArr.join('');
-      else if (opts.invert === 'word') result = input.split(' ').reverse().join(' ');
+      switch (opts.invert) {
+        case 'char':
+        case 'character':
+          result = globArr.join('');
+        break;
+        case 'word':
+          result = input.split(' ').reverse().join(' ');
+        break;
+      }
     break;
 
     case 'number':
+      options.invert = (options.invert === undefined) ? 'index' : options.invert;
+
       // convert the number to string then replace the minus(-) symbol with nothing
       const nStr = String(input).replace(/^-/, '');
+      if ( /e/.test(nStr) ) throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/dev/readme.md#limits for more info.');
 
-      if (/e/.test(nStr)) {
-        throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/dev/readme.md#limits for more info.');
+      switch (opts.invert) {
+        case 'sign':
+          result = ( /^-/.test(input) ) ? Number(+nStr) : Number(-nStr);
+        break;
+        case 'index':
+          result = ( /^-/.test(input) ) ?
+            reverse(nStr, {then: (_, x) => Number(-x)}) :
+            reverse(nStr, {then: (_, x) => Number(x)});
+        break;
       }
-      result = (/^-/.test(input)) ? Number(`+${nStr}`) : Number(`-${nStr}`);
     break;
 
     case 'array':
@@ -70,15 +86,13 @@ function reverse(input, options = {}) {
     break;
   }
 
-  if (typeof options.then === 'function') {
-    return options.then(input, result);
-  } else if (options.then &&
-      typeof options.then !== 'function'
-  ) {
-    throw new TypeError(
-      `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(options.then)}.`
-    );
-  }
+  const then = options.then;
+
+  if (typeof then === 'function') return then(input, result);
+  else if (then && typeof then !== 'function') throw new TypeError(
+    `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(then)}.`
+  );
+
   return result;
 }
 
