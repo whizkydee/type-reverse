@@ -1,6 +1,8 @@
 .vscode
 src
-.eslintrc.json
+.eslintrc
+.babelrc
+.travis.yml
 .editorconfig
 .npmrc
 .gitignore
