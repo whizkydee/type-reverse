@@ -66,8 +66,8 @@ function reverse(input, options = {}) {
         break;
         case 'index':
           result = ( /^-/.test(input) ) ?
-            reverse(nStr, {then: (_, x) => Number(-x)}) :
-            reverse(nStr, {then: (_, x) => Number(x)});
+            reverse(nStr, { then: (_, x) => Number(-x) }) :
+            reverse(nStr, { then: (_, x) => Number(x) });
         break;
       }
     break;
