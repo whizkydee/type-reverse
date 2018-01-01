@@ -21,12 +21,12 @@ const reverse = require('type-reverse')
 
 ### API
 
-#### reverse(input, callback)
+#### reverse(input, options)
 
 **Params**
 
 * `input` **{String|Number|Array|NodeList|Boolean}**
-* `callback` **{Function}**
+* `options` **{?Object}**
 * `returns` **{undefined}**
 
 ```js
@@ -35,20 +35,6 @@ reverse('pizza')
 
 reverse('🐆🐕')
 //=> "🐕🐆"
-```
-
-_Note that reversing numbers with this utility just changes the signs._
-
-## Booleans
-
-For the record, this utility supports reversing booleans. I consider it a bad practice though.
-
-```js
-reverse(true)
-//=> false
-
-reverse(!1)
-//=> true
 ```
 
 ## Non-destructive array reverse
@@ -74,8 +60,9 @@ The callback function accepts two optional parameters; `original` and/or `after`
 ```js
 const text = 'I love cats'
 
-reverse(text, (original, after) => {
-  return `${original} was reversed to: ${after}`
+reverse(text, {
+  then: (original, after) =>
+    `${original} was reversed to: ${after}`
 })
 //=> "I love cats was reversed to: stac evol I"
 ```
@@ -85,8 +72,9 @@ reverse(text, (original, after) => {
 ```js
 const text = 'I used to hate cats'
 
-reverse(text, str => {
-  return `${str}, but now ${str.replace('used to hate cats', `love 'em`)}`
+reverse(text, {
+  then: str =>
+    `${str}, but now ${str.replace('used to hate cats', `love 'em`)}`
 })
 //=> "I used to hate cats, but now I love 'em"
 ```
