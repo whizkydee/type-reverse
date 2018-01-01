@@ -31,52 +31,35 @@ const reverse = require('type-reverse')
 
 ```js
 reverse('pizza')
-//=> "azzip"
-
-reverse('🐆🐕')
-//=> "🐕🐆"
+//=> azzip
 ```
 
 ## Non-destructive array reverse
 
-When JavaScript's `Array.prototype.reverse()` method is used on arrays, the output of the array when reversed gets written into the original array, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still retains the elements of the original array without making any changes to it.
+When `[].reverse()` is used, the output of the array when reversed gets written into the original array, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still retains the elements of the original array without making any changes to it.
 
 ```js
 const arr = ['a', 'b', 'c']
-
-reverse(arr)
-//=> ['c', 'b', 'a']
-
-console.log(arr)
-//=> ['a', 'b', 'c']
+reverse(arr) //=> ['c', 'b', 'a']
 ```
 
-### `callback`
+The elements in `arr` are still retained.
+```js
+console.log(arr) //=> ['a', 'b', 'c']
+```
 
-The callback function accepts two optional parameters; `original` and/or `after`.
+## `options.then`
+
+The `then` method acts as a callback accepts two optional parameters; `original` and/or `after`.
 * `original` - the initial input that was passed into the function
 * `after` - the reversed value of the input
 
 ```js
-const text = 'I love cats'
+const text = 'dog'
 
 reverse(text, {
-  then: (original, after) =>
-    `${original} was reversed to: ${after}`
-})
-//=> "I love cats was reversed to: stac evol I"
-```
-
-#### Manipulating stuff
-
-```js
-const text = 'I used to hate cats'
-
-reverse(text, {
-  then: str =>
-    `${str}, but now ${str.replace('used to hate cats', `love 'em`)}`
-})
-//=> "I used to hate cats, but now I love 'em"
+  then: (a, b) => `${a} was changed to ${b}`
+}) //=> dog was changed to god
 ```
 
 
