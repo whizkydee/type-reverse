@@ -1,6 +1,18 @@
 import reverse from '../build/index';
 
 describe('Number Reverse', () => {
+  test('reverse a number without specifying options', () => {
+    const number = 12345;
+    expect(reverse(number)).toEqual(54321);
+    expect(reverse(number)).not.toBeUndefined();
+  });
+
+  test('reverse a negative number without specifying options', () => {
+    const number = -12345;
+    expect(reverse(number)).toEqual(-54321);
+    expect(reverse(number)).not.toBeUndefined();
+  });
+
   test('change the indexes of a positive number', () => {
     const number = 54321;
     expect(reverse(number, {invert: 'index'}))
