@@ -18,26 +18,25 @@
  * @api public
  */
 
-import {
-  typeOf,
-  supportedTypes
-} from './util/is';
+import { is, typeOf, supportedTypes as supported } from './util/is';
 
 function reverse(input, options = {}) {
-  if (!supportedTypes(input)) throw new TypeError(
+  if (input && !supported(input)) throw new TypeError(
     `Failed to apply 'reverse': ${typeOf(input)}s are not supported`
   );
 
   // map the options!
   const opts = {
-    bigInt: options.bigInt || false,
     invert: options.invert || 'character',
     then: options.then || ((_, v) => v)
   };
 
   // create a new array, copy the items of the initial into the new
   // then reverse the new array.
-  const globArr = [...input].reverse();
+  const globArr =
+    (is.string(input) || is.array(input)) ?
+      [...input].reverse() : undefined;
+
   let result;
 
   switch ( typeOf(input) ) {
@@ -54,7 +53,7 @@ function reverse(input, options = {}) {
     break;
 
     case 'number':
-      options.invert = (options.invert === undefined) ? 'index' : options.invert;
+      opts.invert = (options.invert === undefined) ? 'index' : options.invert;
 
       // convert the number to string then replace the minus(-) symbol with nothing
       const nStr = String(input).replace(/^-/, '');
@@ -89,7 +88,7 @@ function reverse(input, options = {}) {
   const then = options.then;
 
   if (typeof then === 'function') return then(input, result);
-  else if (then && typeof then !== 'function') throw new TypeError(
+  if (then && typeof then !== 'function') throw new TypeError(
     `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(then)}.`
   );
 

@@ -17,4 +17,4 @@ const is = {
 const supportedTypes = i =>
   is.string(i) || is.number(i) || is.nodelist(i) || is.array(i) || is.boolean(i);
 
-export { typeOf, supportedTypes };
+export { typeOf, is, supportedTypes };
