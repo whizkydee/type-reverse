@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "repository": "whizkydee/type-reverse",
   "main": "build/index.js",
-  "description": "Lightweight reverse utility around strings, arrays, numbers and more.",
+  "description": "🦄 Lightweight reverse utility around strings, arrays, numbers and more.",
   "author": {
     "name": "Olaolu Olawuyi",
     "email": "mrolaolu@gmail.com",
@@ -22,6 +22,7 @@
     "build"
   ],
   "keywords": [
+    "🦄",
     "array",
     "arruys",
     "nodelist",

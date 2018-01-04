@@ -8,7 +8,7 @@
 'use strict';
 
 /**
- * Lightweight reverse utility around strings, arrays, numbers and more.
+ * 🦄 Lightweight reverse utility around strings, arrays, numbers and more.
  *
  * @name reverse
  * @alias inverse
