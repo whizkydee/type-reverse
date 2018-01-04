@@ -21,7 +21,7 @@ const reverse = require('type-reverse')
 
 ### API
 
-#### reverse(input, options)
+#### reverse(input, ?options)
 
 **Params**
 
@@ -34,25 +34,78 @@ reverse('pizza')
 //=> azzip
 ```
 
+Works with numbers too.
+
+```js
+reverse(1234)
+//=> 4321
+```
+
 ## Non-destructive array reverse
 
-When `[].reverse()` is used, the output of the array when reversed gets written into the original array, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still retains the elements of the original array without making any changes to it.
+When JavaScript's native array `.reverse()` method is used, elements in the original array lose their initial indexes, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still maintains the indexes of the elements in the original array without making any changes to it.
+
+#### native reverse...
 
 ```js
-const arr = ['a', 'b', 'c']
-reverse(arr) //=> ['c', 'b', 'a']
+const arr = [1, 2, 3]
+arr.reverse() //=> [3, 2, 1]
 ```
 
-The elements in `arr` are still retained.
+Oops, we lost the indexes of elements in the initial array...
 ```js
-console.log(arr) //=> ['a', 'b', 'c']
+console.log(arr) //=> [3, 2, 1]
 ```
 
-## `options.then`
+vs...
 
-The `then` method acts as a callback accepts two optional parameters; `original` and/or `after`.
-* `original` - the initial input that was passed into the function
-* `after` - the reversed value of the input
+#### to the rescue...
+
+```js
+const arr = [1, 2, 3]
+reverse(arr) //=> [3, 2, 1]
+```
+
+Yay! The indexes of elements in `arr` are still maintained...
+```js
+console.log(arr) //=> [1, 2, 3]
+```
+
+## options
+
+### `invert: {String}`
+
+This property defaults to `index` and works with strings and numbers only.
+
+```js
+reverse(/*...*/, {
+  invert: '[index|word|sign]'
+})
+```
+
+* `index` - interchanges the indexes of characters in the input...
+  ```js
+  reverse(12345, {invert: 'index'}) //=> 54321
+  reverse('of... unicorns', {invert: 'index'}) //=> snrocinu ...fo
+  ```
+
+* `sign` - inverts the sign in a number...
+  ```js
+  reverse(1234, {invert: 'sign'}) //=> -1234
+  ```
+
+* `word` - swaps the location of words in a string...
+  ```js
+  reverse('of... unicorns', {invert: 'word'}) //=> unicorns of...
+  ```
+
+
+### `then: {Function}`
+
+The `then` method acts as a callback and takes in a function with two optional parameters that represent `before` and `after` respectively.
+
+* `before` - the initial input that was passed into the function
+* `after` - the result after reversing the input
 
 ```js
 const text = 'dog'
@@ -62,6 +115,9 @@ reverse(text, {
 }) //=> dog was changed to god
 ```
 
+## Limits
+
+Did you just try to reverse a reaally huge number? Sadly, this utility currently doesn't support very large numbers as they automatically get converted into exponents by JavaScript engines. Trying to do so with this utility would throw a **TypeError**.
 
 ## Author
 
