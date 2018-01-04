@@ -13,7 +13,6 @@
  "extends": "eslint:recommended",
  "rules": {
    "no-case-declarations": "off",
-   "no-console": ["warn"],
-   "semi": ["error", "always"]
+   "no-console": ["warn"]
  }
 }
