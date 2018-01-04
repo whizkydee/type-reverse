@@ -75,7 +75,7 @@ console.log(arr) //=> [1, 2, 3]
 
 ### `invert: {String}`
 
-This property defaults to `index` and works with strings and numbers only.
+This property defaults to `index` and applies to strings and numbers only.
 
 ```js
 reverse(/*...*/, {
