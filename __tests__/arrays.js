@@ -1,6 +1,6 @@
 import reverse from '../build/index';
 
-describe('Array Reverse', () => {
+describe('array reverse', () => {
 
   test('reverse an array of strings', () => {
     const arr = ['I', 'would', 'love', 'to', 'have', 'some fun'];

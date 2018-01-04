@@ -1,6 +1,6 @@
 import reverse from '../build/index';
 
-describe('Number Reverse', () => {
+describe('number reverse', () => {
   test('reverse a number without specifying options', () => {
     const number = 12345;
     expect(reverse(number)).toEqual(54321);

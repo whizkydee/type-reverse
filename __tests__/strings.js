@@ -1,15 +1,22 @@
 import reverse from '../build/index';
 
-describe('String Reverse', () => {
+describe('string reverse', () => {
   test('reverse a string without options', () => {
     const text = 'pizza';
     expect(reverse(text)).toBe('azzip');
+    expect(reverse(text)).not.toBeUndefined();
   });
 
   test('swap the words in a string', () => {
     const text = 'hello world';
     expect(reverse( text, {invert: 'word'} ))
       .toBe('world hello');
+  });
+
+  test('swap the indexes in a string', () => {
+    const text = 'hello';
+    expect(reverse( text, {invert: 'index'} ))
+      .toBe('olleh');
   });
 
   test('reverse unicode characters', () => {

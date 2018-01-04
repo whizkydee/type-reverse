@@ -1,6 +1,6 @@
 import reverse from '../build/index';
 
-describe('Reverse dynamically via the then method', () => {
+describe('reverse dynamically via the then method', () => {
 
   test('reverse a string and do stuff via the then method', () => {
     const string = 'I love cats';

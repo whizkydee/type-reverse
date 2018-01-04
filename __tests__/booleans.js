@@ -1,6 +1,6 @@
 import reverse from '../build/index';
 
-describe('Boolean Reverse', () => {
+describe('boolean reverse', () => {
   test('should reverse `false` and return `true`', () => {
     const boolean = false;
     const boolean2 = !1;
