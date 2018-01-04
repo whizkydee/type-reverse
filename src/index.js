@@ -49,7 +49,7 @@ function reverse(input, options = {}) {
           result = input.split(' ').reverse().join(' ')
         break
       }
-    break;
+    break
 
     case 'number':
       // convert the number to string then replace the minus(-) symbol with nothing
