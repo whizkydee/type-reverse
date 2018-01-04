@@ -18,82 +18,77 @@
  * @api public
  */
 
-import { is, typeOf, supportedTypes as supported } from './util/is';
+import { is, typeOf, supportedTypes as supported } from './util/is'
 
 function reverse(input, options = {}) {
   if (input && !supported(input)) throw new TypeError(
     `Failed to apply 'reverse': ${typeOf(input)}s are not supported`
-  );
+  )
 
-  // map the options!
+  const then = options.then
   const opts = {
-    invert: options.invert || 'character',
-    then: options.then || ((_, v) => v)
-  };
+    invert: options.invert || 'index',
+    then: then || ((_, v) => v)
+  }
 
-  // create a new array, copy the items of the initial into the new
-  // then reverse the new array.
-  const globArr =
-    (is.string(input) || is.array(input)) ?
-      [...input].reverse() : undefined;
+  // create a new array, copy the items of the initial
+  // into the new then reverse the new array.
+  const globArr = (is.string(input) || is.array(input)) ?
+    [...input].reverse() : undefined
+  const minusRE = /^-/
 
-  let result;
+  let result
 
   switch ( typeOf(input) ) {
     case 'string':
       switch (opts.invert) {
-        case 'char':
-        case 'character':
-          result = globArr.join('');
-        break;
+        case 'index':
+          result = globArr.join('')
+        break
         case 'word':
-          result = input.split(' ').reverse().join(' ');
-        break;
+          result = input.split(' ').reverse().join(' ')
+        break
       }
     break;
 
     case 'number':
-      opts.invert = (options.invert === undefined) ? 'index' : options.invert;
-
       // convert the number to string then replace the minus(-) symbol with nothing
-      const nStr = String(input).replace(/^-/, '');
-      if ( /e/.test(nStr) ) throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/dev/readme.md#limits for more info.');
+      const nStr = String(input).replace(minusRE, '')
+      if ( /e/.test(nStr) ) throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/master/readme.md#limits for more info.')
 
       switch (opts.invert) {
         case 'sign':
-          result = ( /^-/.test(input) ) ? Number(+nStr) : Number(-nStr);
-        break;
+          result = ( minusRE.test(input) ) ? Number(+nStr) : Number(-nStr)
+        break
         case 'index':
-          result = ( /^-/.test(input) ) ?
+          result = ( minusRE.test(input) ) ?
             reverse(nStr, { then: (_, x) => Number(-x) }) :
-            reverse(nStr, { then: (_, x) => Number(x) });
-        break;
+            reverse(nStr, { then: (_, x) => Number(x) })
+        break
       }
-    break;
+    break
 
     case 'array':
     case 'nodelist':
-      result = globArr;
-    break;
+      result = globArr
+    break
 
     case 'boolean':
-      result = !input;
-    break;
+      result = !input
+    break
 
     default:
-      result = reverse(input);
-    break;
+      result = reverse(input)
+    break
   }
 
-  const then = options.then;
-
-  if (typeof then === 'function') return then(input, result);
+  if (typeof then === 'function') return then.call(this, input, result)
   if (then && typeof then !== 'function') throw new TypeError(
     `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(then)}.`
-  );
+  )
 
-  return result;
+  return result
 }
 
-export default reverse;
-module.exports = reverse;
+export default reverse
+module.exports = reverse
