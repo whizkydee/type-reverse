@@ -117,7 +117,7 @@ reverse(text, {
 
 ## Limits
 
-Did you just try to reverse a reaally huge number? Sadly, this utility currently doesn't support very large numbers as they automatically get converted into exponents by JavaScript engines. Trying to do so with this utility would throw a **TypeError**.
+Did you just try to reverse a reaally huge number? Sadly, this utility currently doesn't support very large numbers as they automatically get converted into scientific form by JavaScript engines. Trying to do so with this utility would throw a **TypeError**.
 
 ## Author
 

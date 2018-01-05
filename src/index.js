@@ -26,22 +26,21 @@ function reverse(input, options = {}) {
   )
 
   const then = options.then
-  const opts = {
-    invert: options.invert || 'index',
-    then: then || ((_, v) => v)
-  }
+
+  options.invert = options.invert || 'index'
+  options.then = then || ((_, v) => v)
 
   // create a new array, copy the items of the initial
   // into the new then reverse the new array.
-  const globArr = (is.string(input) || is.array(input)) ?
-    [...input].reverse() : undefined
-  const minusRE = /^-/
+  const globArr =
+    (is.string(input) || is.array(input)) ?
+      [...input].reverse() : undefined
+  const re = /^-/
 
   let result
-
   switch ( typeOf(input) ) {
     case 'string':
-      switch (opts.invert) {
+      switch (options.invert) {
         case 'index':
           result = globArr.join('')
         break
@@ -53,15 +52,16 @@ function reverse(input, options = {}) {
 
     case 'number':
       // convert the number to string then replace the minus(-) symbol with nothing
-      const nStr = String(input).replace(minusRE, '')
-      if ( /e/.test(nStr) ) throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/master/readme.md#limits for more info.')
+      const nStr = String(input).replace(re, '')
 
-      switch (opts.invert) {
+      if (/e/.test(nStr)) throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/master/readme.md#limits for more info.')
+
+      switch (options.invert) {
         case 'sign':
-          result = ( minusRE.test(input) ) ? Number(+nStr) : Number(-nStr)
+          result = ( re.test(input) ) ? Number(+nStr) : Number(-nStr)
         break
         case 'index':
-          result = ( minusRE.test(input) ) ?
+          result = ( re.test(input) ) ?
             reverse(nStr, { then: (_, x) => Number(-x) }) :
             reverse(nStr, { then: (_, x) => Number(x) })
         break
