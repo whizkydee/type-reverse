@@ -16,21 +16,20 @@
     "test": "jest",
     "build": "babel src --out-dir build",
     "start": "npm run lint && npm run build && npm test",
-    "preinstall": "npm run build"
+    "prepublishOnly": "npm run build"
   },
-  "files": [
-    "build"
-  ],
   "keywords": [
     "🦄",
     "array",
-    "arruys",
+    "arrays",
     "nodelist",
     "nodelists",
     "string",
     "strings",
     "number",
     "numbers",
+    "boolean",
+    "booleans",
     "reverse",
     "invert",
     "inversion",

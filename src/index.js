@@ -5,7 +5,7 @@
  * Released under the MIT License.
  */
 
-'use strict';
+'use strict'
 
 /**
  * 🦄 Lightweight reverse utility around strings, arrays, numbers and more.
@@ -32,9 +32,8 @@ function reverse(input, options = {}) {
 
   // create a new array, copy the items of the initial
   // into the new then reverse the new array.
-  const globArr =
-    (is.string(input) || is.array(input)) ?
-      [...input].reverse() : undefined
+  const globArr = (is.string(input) || is.array(input)) ?
+    [...input].reverse() : undefined
   const re = /^-/
 
   let result
