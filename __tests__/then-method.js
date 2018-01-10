@@ -1,4 +1,4 @@
-import reverse from '../build/index'
+const reverse = require('../build/index')
 
 describe('reverse dynamically via the then method', () => {
 

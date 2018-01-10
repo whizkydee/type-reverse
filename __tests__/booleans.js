@@ -1,4 +1,4 @@
-import reverse from '../build/index'
+const reverse = require('../build/index')
 
 describe('boolean reverse', () => {
   test('should reverse `false` and return `true`', () => {

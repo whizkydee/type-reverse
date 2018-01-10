@@ -1,4 +1,4 @@
-import reverse from '../build/index'
+const reverse = require('../build/index')
 
 describe('array reverse', () => {
 
