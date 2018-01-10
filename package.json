@@ -40,6 +40,9 @@
     "integer",
     "integers"
   ],
+  "files": [
+    "build/"
+  ],
   "engines": {
     "node": ">=4"
   },

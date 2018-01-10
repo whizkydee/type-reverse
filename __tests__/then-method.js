@@ -16,7 +16,6 @@ describe('reverse dynamically via the then method', () => {
     })
 
     expect(reversed).toBe('$0.00')
-    expect(typeof reversed).toBe('string')
   })
 
   test('reverse a negative number and do stuff via the then method', () => {

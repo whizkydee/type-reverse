@@ -35,7 +35,5 @@ describe('number reverse', () => {
     const number = -1234
     const reversed = reverse(number, {invert: 'sign'})
     expect(reversed).toEqual(1234)
-    expect(reversed).not.toEqual(4321)
-    expect(typeof reversed).not.toBe('string')
   })
 })
