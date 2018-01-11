@@ -27,7 +27,7 @@ import reverse from 'type-reverse'
 
 ### API
 
-#### reverse(input, ?options)
+#### reverse( input [ , options ] )
 
 **Params**
 
