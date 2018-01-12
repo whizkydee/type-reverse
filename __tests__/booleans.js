@@ -1,4 +1,4 @@
-import reverse from '../build/index'
+import reverse from '../dist/index'
 
 describe('boolean reverse', () => {
   test('should reverse `false` and return `true`', () => {

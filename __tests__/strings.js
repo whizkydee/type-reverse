@@ -1,4 +1,4 @@
-import reverse from '../build/index'
+import reverse from '../dist/index'
 
 describe('string reverse', () => {
   test('reverse a string without options', () => {

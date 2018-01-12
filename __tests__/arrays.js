@@ -1,4 +1,4 @@
-import reverse from '../build/index'
+import reverse from '../dist/index'
 
 describe('array reverse', () => {
 
