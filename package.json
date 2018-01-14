@@ -16,7 +16,7 @@
     "test": "jest",
     "build": "babel src --out-dir build",
     "start": "npm run lint && npm run build && npm test",
-    "preinstall": "npm run build"
+    "prepublish": "npm run build"
   },
   "keywords": [
     "🦄",
