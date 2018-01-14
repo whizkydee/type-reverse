@@ -2,7 +2,7 @@
   "name": "type-reverse",
   "version": "1.0.1",
   "repository": "whizkydee/type-reverse",
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "description": "🦄 Lightweight reverse utility around strings, arrays, numbers and more.",
   "author": {
     "name": "Olaolu Olawuyi",
@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "eslint src __tests__",
     "test": "jest",
-    "build": "babel src --out-dir dist",
+    "build": "babel src --out-dir build",
     "start": "npm run lint && npm run build && npm test",
     "preinstall": "npm run build"
   },
@@ -41,7 +41,7 @@
     "integers"
   ],
   "files": [
-    "dist"
+    "build"
   ],
   "engines": {
     "node": ">=4"
