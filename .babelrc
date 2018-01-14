@@ -1,0 +1,12 @@
+{
+  "presets": ["env"],
+  "plugins": [
+    "transform-minify-booleans",
+    "minify-dead-code-elimination",
+    "minify-flip-comparisons",
+    "minify-guarded-expressions",
+    "transform-merge-sibling-variables",
+    "minify-simplify"
+  ],
+  "comments": true
+}

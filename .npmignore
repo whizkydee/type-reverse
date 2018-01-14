@@ -1,0 +1,9 @@
+.vscode
+src
+.eslintrc
+.babelrc
+.travis.yml
+.editorconfig
+.npmrc
+.gitignore
+__tests__
