@@ -1,6 +1,6 @@
 {
   "name": "type-reverse",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "repository": "whizkydee/type-reverse",
   "main": "build/index.js",
   "description": "🦄 Lightweight reverse utility around strings, arrays, numbers and more.",
