@@ -47,6 +47,12 @@ reverse(1234)
 //=> 4321
 ```
 
+Works with booleans too.
+```js
+reverse(true)
+//=> false
+```
+
 ## Reversing arrays...
 
 When JavaScript's native array `reverse()` method is used, elements in the original array lose their initial indexes, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still maintains the indexes of the elements in the original array without making any changes to it.
