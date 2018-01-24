@@ -31,7 +31,7 @@ import reverse from 'type-reverse'
 
 **Params**
 
-* `input` **{String|Number|Array|NodeList|Boolean}**
+* `input` **{String|Number|Array|Set|NodeList}**
 * `options` **{?Object}**
 * `returns` **{undefined}**
 
@@ -76,6 +76,10 @@ Yay! The indexes of elements in `arr` are still maintained...
 ```js
 console.log(arr) //=> [1, 2, 3]
 ```
+
+### Sets
+
+If you've been wondering how to reverse Sets, this utility actually supports reversing Sets. The main `reverse` function can accept a `Set` as the input and then return the reversed `Set`...
 
 ## options
 

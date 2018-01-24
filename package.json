@@ -16,7 +16,7 @@
     "test": "jest",
     "build": "babel src --out-dir build",
     "start": "npm run lint && npm run build && npm test",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "keywords": [
     "🦄",
@@ -28,8 +28,8 @@
     "strings",
     "number",
     "numbers",
-    "boolean",
-    "booleans",
+    "set",
+    "sets",
     "reverse",
     "invert",
     "inversion",
@@ -38,7 +38,10 @@
     "inverse",
     "opposite",
     "integer",
-    "integers"
+    "integers",
+    "change",
+    "swap",
+    "switch"
   ],
   "files": [
     "build"

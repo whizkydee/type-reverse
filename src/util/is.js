@@ -1,16 +1,16 @@
 // A smarter `typeof` function
-const typeOf = v =>
+const _typeof_ = v =>
   v === undefined ? 'undefined' : v === null ? 'null' : v.constructor.name.toLowerCase()
 
 const is = {
-  string:    i => typeOf(i) === 'string',
-  array:     i => typeOf(i) === 'array',
-  nodelist:  i => typeOf(i) === 'nodelist',
-  number:    i => typeOf(i) === 'number',
-  boolean:   i => typeOf(i) === 'boolean'
+  string:    i => _typeof_(i) === 'string',
+  array:     i => _typeof_(i) === 'array',
+  nodelist:  i => _typeof_(i) === 'nodelist',
+  number:    i => _typeof_(i) === 'number',
+  set:       i => _typeof_(i) === 'set'
 }
 
-const supportedTypes = i =>
-  is.string(i) || is.number(i) || is.nodelist(i) || is.array(i) || is.boolean(i)
+const supportedTypes = i => is.string(i) || is.number(i) ||
+  is.nodelist(i) || is.array(i) || is.set(i)
 
-export { typeOf, is, supportedTypes }
+export { _typeof_, supportedTypes as supported }

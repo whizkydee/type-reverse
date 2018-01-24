@@ -12,32 +12,29 @@
  *
  * @name reverse
  * @alias inverse
- * @param {String|Number|Array|NodeList|Boolean} `input`
+ * @param {String|Number|Array|Set|NodeList} `input`
  * @param {?Object} `options`
  * @return {undefined}
  * @api public
  */
 
-import { is, typeOf, supportedTypes as supported } from './util/is'
+import { _typeof_, supported } from './util/is'
 
 function reverse(input, options = {}) {
   if (input && !supported(input)) throw new TypeError(
-    `Failed to apply 'reverse': ${typeOf(input)}s are not supported`
+    `Failed to apply 'reverse': ${_typeof_(input)}s are not supported`
   )
 
   const then = options.then
 
   options.invert = options.invert || 'index'
-  options.then = then || ((_, v) => v)
+  options.then = then || ( (_, v) => v )
 
-  // create a new array, copy the items of the initial
-  // into the new then reverse the new array.
-  const globArr = (is.string(input) || is.array(input)) ?
-    [...input].reverse() : undefined
-  const re = /^-/
+  const globArr = [...input].reverse()
+  const minusRE = /^-/
 
   let result
-  switch ( typeOf(input) ) {
+  switch ( _typeof_(input) ) {
     case 'string':
       switch (options.invert) {
         case 'index':
@@ -51,16 +48,16 @@ function reverse(input, options = {}) {
 
     case 'number':
       // convert the number to string then replace the minus(-) symbol with nothing
-      const nStr = String(input).replace(re, '')
+      const nStr = String(input).replace(minusRE, '')
 
       if (/e/.test(nStr)) throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/master/readme.md#limits for more info.')
 
       switch (options.invert) {
         case 'sign':
-          result = ( re.test(input) ) ? Number(+nStr) : Number(-nStr)
+          result = ( minusRE.test(input) ) ? Number(+nStr) : Number(-nStr)
         break
         case 'index':
-          result = ( re.test(input) ) ?
+          result = ( minusRE.test(input) ) ?
             reverse(nStr, { then: (_, x) => Number(-x) }) :
             reverse(nStr, { then: (_, x) => Number(x) })
         break
@@ -72,8 +69,8 @@ function reverse(input, options = {}) {
       result = globArr
     break
 
-    case 'boolean':
-      result = !input
+    case 'set':
+      result = new Set(globArr)
     break
 
     default:
@@ -83,7 +80,7 @@ function reverse(input, options = {}) {
 
   if (typeof then === 'function') return then.call(this, input, result)
   if (then && typeof then !== 'function') throw new TypeError(
-    `Failed to apply 'reverse': Expected function as second argument, got ${typeOf(then)}.`
+    `Failed to apply 'reverse': Expected function as second argument, got ${_typeof_(then)}.`
   )
 
   return result
