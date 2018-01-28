@@ -1,4 +1,4 @@
-import reverse from '../build/index'
+import reverse from '../../build/index'
 
 describe('number reverse', () => {
   test('reverse a number without specifying options', () => {

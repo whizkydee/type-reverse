@@ -12,10 +12,10 @@
   "license": "MIT",
   "homepage": "https://github.com/whizkydee/type-reverse#readme",
   "scripts": {
-    "lint": "eslint src __tests__",
+    "lint": "eslint src",
     "test": "jest",
-    "build": "babel src --out-dir build",
-    "start": "npm run lint && npm run build && npm test",
+    "build": "babel src --out-dir build && del-cli \"build/__tests__\"",
+    "start": "del-cli build && npm run lint && npm run build && npm test",
     "prepare": "npm run build"
   },
   "keywords": [
@@ -52,6 +52,17 @@
   "jest": {
     "testEnvironment": "node"
   },
+  "babel": {
+    "presets": ["env"],
+    "plugins": [
+      "transform-minify-booleans",
+      "minify-dead-code-elimination",
+      "minify-flip-comparisons",
+      "minify-guarded-expressions",
+      "transform-merge-sibling-variables",
+      "minify-simplify"
+    ]
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.3",
@@ -62,6 +73,7 @@
     "babel-plugin-transform-merge-sibling-variables": "^6.8.6",
     "babel-plugin-transform-minify-booleans": "^6.8.3",
     "babel-preset-env": "^1.6.1",
+    "del-cli": "^1.1.0",
     "eslint": "^4.13.1",
     "jest-cli": "^22.0.4"
   }

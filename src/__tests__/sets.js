@@ -1,5 +1,5 @@
-import reverse from '../build/index'
-import { _typeof_ } from '../build/util/is'
+import reverse from '../../build/index'
+import { _typeof } from '../../build/util'
 
 describe('set reverse', () => {
   test('reverse a set of strings', () => {
@@ -19,7 +19,7 @@ describe('set reverse', () => {
     const set = new Set([1, 2, 3, 1, 3, 2])
     const reversedSet = reverse(set)
     expect(reversedSet).toEqual(new Set([3, 2, 1]))
-    expect(_typeof_(reversedSet)).toBe('set')
+    expect(_typeof(reversedSet)).toBe('set')
   })
 
   test('reverse a set with several types of elements', () => {

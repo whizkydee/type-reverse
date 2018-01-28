@@ -27,13 +27,13 @@ import reverse from 'type-reverse'
 
 ### API
 
-#### reverse( input [ , options ] )
+#### reverse( input[, options] )
 
 **Params**
 
 * `input` **{String|Number|Array|Set|NodeList}**
 * `options` **{?Object}**
-* `returns` **{undefined}**
+* `returns` **{*}**
 
 ```js
 reverse('pizza')
@@ -49,7 +49,7 @@ reverse(1234)
 
 ## Reversing arrays...
 
-When JavaScript's native array `reverse()` method is used, elements in the original array lose their initial indexes, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still maintains the indexes of the elements in the original array without making any changes to it.
+When JavaScript's `Array#reverse` method is used, elements in the original array lose their initial indexes, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still maintains the indexes of the elements in the original array without making any changes to it.
 
 #### native reverse...
 
@@ -79,7 +79,12 @@ console.log(arr) //=> [1, 2, 3]
 
 ### Sets
 
-If you've been wondering how to reverse Sets, this utility actually supports reversing Sets. The main `reverse` function can accept a `Set` as the input and then return the reversed `Set`...
+If you've been wondering how to reverse Sets in JavaScript, here's it! The core `reverse` function can take in a `Set` as the input and then return the reversed `Set`...
+
+```js
+const set = new Set([5, 4, 3, 4, 5])
+reverse(set) //=> Set { 3, 4, 5 }
+```
 
 ## options
 
@@ -129,7 +134,7 @@ reverse(text, {
 
 ## Limits
 
-Did you just try to reverse a reaally huge number? Sadly, this utility currently doesn't support very large numbers as they automatically get converted into scientific form by JavaScript engines. Trying to do so with this utility would throw a **TypeError**.
+Did you just try to reverse a reaally huge number? Unfortunately, this utility doesn't support very large numbers. Trying to do so with this utility would throw a **TypeError**.
 
 
 

@@ -14,35 +14,30 @@
  * @alias inverse
  * @param {String|Number|Array|Set|NodeList} `input`
  * @param {?Object} `options`
- * @return {undefined}
+ * @return {*}
  * @api public
  */
 
-import { _typeof_, supported } from './util/is'
+import { _typeof, supported, errprefix } from './util'
 
 function reverse(input, options = {}) {
-  if (input && !supported(input)) throw new TypeError(
-    `Failed to apply 'reverse': ${_typeof_(input)}s are not supported`
-  )
+  const globArr = [...input].reverse(),
+    then = options.then,
+    minusRE = /^-/
 
-  const then = options.then
+  if (input && !supported(input)) throw new TypeError(
+    `${errprefix} ${_typeof(input)}s are not supported`
+  )
 
   options.invert = options.invert || 'index'
   options.then = then || ( (_, v) => v )
 
-  const globArr = [...input].reverse()
-  const minusRE = /^-/
-
   let result
-  switch ( _typeof_(input) ) {
+  switch ( _typeof(input) ) {
     case 'string':
       switch (options.invert) {
-        case 'index':
-          result = globArr.join('')
-        break
-        case 'word':
-          result = input.split(' ').reverse().join(' ')
-        break
+        case 'index': result = globArr.join(''); break
+        case 'word': result = input.split(' ').reverse().join(' '); break
       }
     break
 
@@ -64,25 +59,17 @@ function reverse(input, options = {}) {
       }
     break
 
-    case 'array':
-    case 'nodelist':
-      result = globArr
-    break
+    case 'array': case 'nodelist': result = globArr; break
 
-    case 'set':
-      result = new Set(globArr)
-    break
+    case 'set': result = new Set(globArr); break
 
-    default:
-      result = reverse(input)
-    break
+    default: result = reverse(input); break
   }
 
   if (typeof then === 'function') return then.call(this, input, result)
   if (then && typeof then !== 'function') throw new TypeError(
-    `Failed to apply 'reverse': Expected function as second argument, got ${_typeof_(then)}.`
+    `${errprefix} Expected function as second argument, got ${_typeof(then)}.`
   )
-
   return result
 }
 

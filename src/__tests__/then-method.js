@@ -1,4 +1,4 @@
-import reverse from '../build/index'
+import reverse from '../../build/index'
 
 describe('reverse dynamically via the then method', () => {
 
