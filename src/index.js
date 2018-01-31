@@ -21,13 +21,12 @@
 import { _typeof, supported, errprefix } from './util'
 
 function reverse(input, options = {}) {
-  const globArr = [...input].reverse(),
-    then = options.then,
-    minusRE = /^-/
+  const globArr = [...input].reverse()
+  , then = options.then
+  , minusRE = /^-/
 
-  if (input && !supported(input)) throw new TypeError(
-    `${errprefix} ${_typeof(input)}s are not supported`
-  )
+  if (input && !supported(input))
+    throw new TypeError(`${errprefix} ${_typeof(input)}s are not supported`)
 
   options.invert = options.invert || 'index'
   options.then = then || ( (_, v) => v )

@@ -10,13 +10,9 @@ const is = {
   set:       i => _typeof(i) === 'set'
 }
 
-const supportedTypes = i => is.string(i) || is.number(i) ||
+const supported = i => is.string(i) || is.number(i) ||
   is.nodelist(i) || is.array(i) || is.set(i)
 
 const errprefix = "Failed to apply 'reverse':"
 
-export {
-  supportedTypes as supported,
-  _typeof,
-  errprefix
-}
+export { _typeof, errprefix, supported }
