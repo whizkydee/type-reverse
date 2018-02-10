@@ -53,7 +53,9 @@
     "testEnvironment": "node"
   },
   "babel": {
-    "presets": ["env"],
+    "presets": [
+      "env"
+    ],
     "plugins": [
       "transform-minify-booleans",
       "minify-dead-code-elimination",
