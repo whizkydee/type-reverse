@@ -18,7 +18,7 @@
  * @api public
  */
 
-import { _typeof, supported, errprefix } from './util'
+import { kindof, supported } from './util'
 
 function reverse(input, options = {}) {
   const globArr = [...input].reverse()
@@ -26,13 +26,13 @@ function reverse(input, options = {}) {
   , minusRE = /^-/
 
   if (input && !supported(input))
-    throw new TypeError(`${errprefix} ${_typeof(input)}s are not supported`)
+    throw new TypeError('Failed to apply \'reverse\': ' + kindof(input) + 's are not supported')
 
   options.invert = options.invert || 'index'
   options.then = then || ( (_, v) => v )
 
   let result
-  switch ( _typeof(input) ) {
+  switch ( kindof(input) ) {
     case 'string':
       switch (options.invert) {
         case 'index': result = globArr.join(''); break
@@ -58,17 +58,16 @@ function reverse(input, options = {}) {
       }
     break
 
-    case 'array': case 'nodelist': result = globArr; break
-
     case 'set': result = new Set(globArr); break
+    case 'array': case 'nodelist': result = globArr; break
 
     default: result = reverse(input); break
   }
 
   if (typeof then === 'function') return then.call(this, input, result)
-  if (then && typeof then !== 'function') throw new TypeError(
-    `${errprefix} Expected function as second argument, got ${_typeof(then)}.`
-  )
+  if (then && typeof then !== 'function')
+    throw new TypeError('Failed to apply \'reverse\': Expected function as second argument, got ' + kindof(then) + '.')
+
   return result
 }
 
