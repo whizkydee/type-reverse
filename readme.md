@@ -49,7 +49,7 @@ reverse(1234)
 
 ## Reversing arrays...
 
-When JavaScript's `Array#reverse` method is used, elements in the original array lose their initial indexes, this is termed, **destructive array reversal**. On the other hand, this utility, adpots the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still maintains the indexes of the elements in the original array without making any changes to it.
+When JavaScript's *Array#reverse* method is used, elements in the original array lose their initial indexes, this is termed, **destructive array reversal**. On the other hand, this utility adopts the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still maintains the indexes of the elements in the original array without making any changes to it.
 
 #### native reverse...
 
@@ -88,7 +88,7 @@ reverse(set) //=> Set { 3, 4, 5 }
 
 ## options
 
-`options` is the second parameter to the function call and it is an object with two possible properties...
+`options` is the second parameter to the function call and it is an object with two available properties...
 
 ### `invert: {String}`
 
