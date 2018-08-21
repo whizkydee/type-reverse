@@ -14,16 +14,19 @@
  * @alias inverse
  * @param {String|Number|Array|Set|NodeList} `input`
  * @param {?Object} `options`
+ * @param {?Function} `callback`
  * @return {*}
  * @api public
  */
 
 import { kindof, supported } from './util'
 
-function reverse(input, options = {}) {
   const globArr = [...input].reverse()
   , then = options.then
   , minusRE = /^-/
+function reverse(input, options = {}, callback) {
+  // eslint-disable-next-line no-extra-boolean-cast
+  options = !!!options ? new Object : options;
     enforceZeros = options.enforceZeros,
 
   if (input && !supported(input))
@@ -32,6 +35,7 @@ function reverse(input, options = {}) {
   options.invert = options.invert || 'index'
   options.then = then || ( (_, v) => v )
   options.enforceZeros = enforceZeros || false;
+  callback = callback || ((_, v) => v);
 
   let result
   switch ( kindof(input) ) {
@@ -89,9 +93,13 @@ function reverse(input, options = {}) {
     default: result = reverse(input); break
   }
 
-  if (typeof then === 'function') return then.call(this, input, result)
-  if (then && typeof then !== 'function')
-    throw new TypeError('Failed to apply \'reverse\': Expected function as second argument, got ' + kindof(then) + '.')
+  if (typeof callback === 'function') return callback.call(this, input, result);
+  if (callback && typeof callback !== 'function')
+    throw new TypeError(
+      "Failed to apply 'reverse': Expected function as third argument, got " +
+        kindof(callback) +
+        '.'
+    );
 
   return result
 }
