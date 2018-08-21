@@ -118,12 +118,12 @@ reverse(/*...*/, {
   reverse('of... unicorns', { invert: 'word' }); //=> unicorns of...
   ```
 
-### `enforceZeros: {Boolean}`
+### `preserveZeros: {Boolean}`
 
 This property defaults to `false`. It specifies whether to enforce preceding zeros in the result of a number that contains trailing zeros. See [#3](https://github.com/whizkydee/type-reverse/issues/4) for more info.
 
 ```js
-reverse(240, { enforceZeros: true }) //=> "042"
+reverse(240, { preserveZeros: true }); //=> "042"
 ```
 
 ## `callback: {Function}`

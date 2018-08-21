@@ -15,21 +15,23 @@ describe('number reverse', () => {
 
   test('reverse a number with trailing zeros and the option enabled', () => {
     const number = 2000;
-    expect(reverse(number, { enforceZeros: true })).toBe('0002');
-    expect(reverse(number, { enforceZeros: true })).not.toBe(2);
+    expect(reverse(number, { preserveZeros: true })).toBe('0002');
+    expect(reverse(number, { preserveZeros: true })).not.toBe(2);
   });
 
   test('reverse a negative number with trailing zeros and the option enabled', () => {
     const number = -2000;
-    expect(reverse(number, { enforceZeros: true, invert: 'sign' })).toEqual(
+    expect(reverse(number, { preserveZeros: true, invert: 'sign' })).toEqual(
       '2000'
     );
-    expect(reverse(number, { enforceZeros: true, invert: 'sign' })).not.toBe(2);
+    expect(reverse(number, { preserveZeros: true, invert: 'sign' })).not.toBe(
+      2
+    );
   });
 
   test('reverse a number without trailing zeros, but the option enabled', () => {
     const number = 9999;
-    expect(reverse(number, { enforceZeros: true })).toEqual(9999);
+    expect(reverse(number, { preserveZeros: true })).toEqual(9999);
   });
 
   test('reverse a negative number without specifying options', () => {
