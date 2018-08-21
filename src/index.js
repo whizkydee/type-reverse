@@ -5,7 +5,7 @@
  * Released under the MIT License.
  */
 
-'use strict'
+'use strict';
 
 /**
  * 🦄 Lightweight reverse utility around strings, arrays, numbers and more.
@@ -19,39 +19,41 @@
  * @api public
  */
 
-import { kindof, supported } from './util'
+import { kindof, supported } from './util';
 
-  const globArr = [...input].reverse()
-  , then = options.then
-  , minusRE = /^-/
 function reverse(input, options = {}, callback) {
   // eslint-disable-next-line no-extra-boolean-cast
   options = !!!options ? new Object : options;
+
+  const newReversedArray = [...input].reverse(),
     enforceZeros = options.enforceZeros,
+    minusRE = /^-/;
 
   if (input && !supported(input))
-    throw new TypeError('Failed to apply \'reverse\': ' + kindof(input) + 's are not supported')
+    throw new TypeError(
+      "Failed to apply 'reverse': " + kindof(input) + 's are not supported'
+    );
 
-  options.invert = options.invert || 'index'
-  options.then = then || ( (_, v) => v )
+  options.invert = options.invert || 'index';
   options.enforceZeros = enforceZeros || false;
   callback = callback || ((_, v) => v);
 
-  let result
-  switch ( kindof(input) ) {
+  let result;
+  switch (kindof(input)) {
     case 'string':
       switch (options.invert) {
-        case 'index': result = globArr.join(''); break
-        case 'word': result = input.split(' ').reverse().join(' '); break
+        case 'index': result = newReversedArray.join(''); break;
+        case 'word': result = input .split(' ').reverse().join(' '); break;
       }
-    break
+      break;
 
     case 'number':
       // convert the number to string then replace the minus(-) symbol with nothing
-      const nStr = String(input).replace(minusRE, '')
+      const positiveNumberAsString = String(input).replace(minusRE, '');
+      const bigInt = /e/i.test(positiveNumberAsString);
+
       const containsTrailingZeros = /0+$/.test(positiveNumberAsString);
 
-      if (/e/.test(nStr)) throw new TypeError('Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/master/readme.md#limits for more info.')
       // there's no need to stringify if...
       // 1. the input contains trailing zeros, but the enforceZeros option is disabled
       // 2. the input doesn't contain trailing zeros, but the enforceZeros option is enabled
@@ -60,6 +62,11 @@ function reverse(input, options = {}, callback) {
         (containsTrailingZeros && !enforceZeros) ||
         (!containsTrailingZeros && enforceZeros) ||
         (!containsTrailingZeros && !enforceZeros);
+
+      if (bigInt)
+        throw new TypeError(
+          'Oops. That number is too large. See https://github.com/whizkydee/type-reverse/blob/master/readme.md#limits for more info.'
+        );
 
       switch (options.invert) {
         case 'sign':
@@ -85,12 +92,12 @@ function reverse(input, options = {}, callback) {
           }
           break;
       }
-    break
+      break;
 
-    case 'set': result = new Set(globArr); break
-    case 'array': case 'nodelist': result = globArr; break
+    case 'set': result = new Set(newReversedArray); break;
+    case 'array': case 'nodelist': result = newReversedArray; break;
 
-    default: result = reverse(input); break
+    default: result = reverse(input); break;
   }
 
   if (typeof callback === 'function') return callback.call(this, input, result);
@@ -101,8 +108,8 @@ function reverse(input, options = {}, callback) {
         '.'
     );
 
-  return result
+  return result;
 }
 
-export default reverse
-module.exports = reverse
+export default reverse;
+module.exports = reverse;
