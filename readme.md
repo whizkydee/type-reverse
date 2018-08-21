@@ -88,7 +88,7 @@ reverse(set); //=> Set { 3, 4, 5 }
 
 ## options
 
-`options` is the second parameter to the function call and it is an object with two available properties...
+`options` is the second parameter to the function call and it is an object with two available properties. It can also take in a falsy value which would implicity get converted to an empty object.
 
 ### `invert: {String}`
 
@@ -120,7 +120,7 @@ reverse(/*...*/, {
 
 ### `preserveZeros: {Boolean}`
 
-This property defaults to `false`. It specifies whether to enforce preceding zeros in the result of a number that contains trailing zeros. See [#3](https://github.com/whizkydee/type-reverse/issues/4) for more info.
+This property defaults to `false`. It specifies whether to enforce preceding zeros in the result of a number that contains trailing zeros. See [#3](https://github.com/whizkydee/type-reverse/issues/4) for more info. Note that the result gets converted to a string.
 
 ```js
 reverse(240, { preserveZeros: true }); //=> "042"
