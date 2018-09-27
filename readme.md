@@ -13,53 +13,53 @@ $ npm install --save type-reverse
 ## Usage
 
 ```js
-const reverse = require('type-reverse');
+const reverse = require('type-reverse')
 ```
 
 or...
 
 ```js
-import reverse from 'type-reverse';
+import reverse from 'type-reverse'
 ```
 
 ### API
 
-#### reverse( input[, options, callback] )
+#### reverse( input[, options][, callback] )
 
 **Params**
 
-- `input` **{String|Number|Array|Set|NodeList}**
+- `input` **{String|Number|Array|Set}**
 - `options` **{?Object}**
 - `callback` **{?Function}**
 - `returns` **{\*}**
 
 ```js
-reverse('pizza');
+reverse('pizza')
 //=> azzip
 ```
 
 Works with numbers too.
 
 ```js
-reverse(1234);
+reverse(1234)
 //=> 4321
 ```
 
 ## Reversing arrays...
 
-When JavaScript's _Array#reverse_ method is used, elements in the original array lose their initial indexes, this is termed, **destructive array reversal**. On the other hand, this utility adopts the **non-destructive array reversal** method, which means the `reverse()` function returns the reversed array and still maintains the indexes of the elements in the original array without making any changes to it.
+When JavaScript's _Array#reverse_ method is used, the original array is mutated, as in, the indexes of the elements are changed. On the other hand, this utility adopts the **non-destructive array reversal** method, which means the `reverse()` function doesn't mutate the array; it just returns the reversed array and still maintains the indexes of the elements in the original array.
 
 #### native reverse...
 
 ```js
-const arr = [1, 2, 3];
-arr.reverse(); //=> [3, 2, 1]
+const arr = [1, 2, 3]
+arr.reverse() //=> [3, 2, 1]
 ```
 
 Oops, we lost the indexes of elements in the initial array...
 
 ```js
-console.log(arr); //=> [3, 2, 1]
+console.log(arr) //=> [3, 2, 1]
 ```
 
 vs...
@@ -67,14 +67,14 @@ vs...
 #### 🦄 to the rescue...
 
 ```js
-const arr = [1, 2, 3];
-reverse(arr); //=> [3, 2, 1]
+const arr = [1, 2, 3]
+reverse(arr) //=> [3, 2, 1]
 ```
 
-Yay! The indexes of elements in `arr` are still maintained...
+Yay! `arr` is not mutated. The indexes of its elements are still maintained...
 
 ```js
-console.log(arr); //=> [1, 2, 3]
+console.log(arr) //=> [1, 2, 3]
 ```
 
 ### Sets
@@ -82,8 +82,8 @@ console.log(arr); //=> [1, 2, 3]
 If you've been wondering how to reverse Sets in JavaScript, here's it! The core `reverse` function can take in a `Set` as the input and then return the reversed `Set`...
 
 ```js
-const set = new Set([5, 4, 3, 4, 5]);
-reverse(set); //=> Set { 3, 4, 5 }
+const set = new Set([5, 4, 3, 4, 5])
+reverse(set) //=> Set { 3, 4, 5 }
 ```
 
 ## options
@@ -103,27 +103,27 @@ reverse(/*...*/, {
 - `index` - interchanges the indexes of characters in the input...
 
   ```js
-  reverse(12345, { invert: 'index' }); //=> 54321
-  reverse('of... unicorns', { invert: 'index' }); //=> snrocinu ...fo
+  reverse(12345, { invert: 'index' }) //=> 54321
+  reverse('of... unicorns', { invert: 'index' }) //=> snrocinu ...fo
   ```
 
 - `sign` - inverts the sign in a number...
 
   ```js
-  reverse(1234, { invert: 'sign' }); //=> -1234
+  reverse(1234, { invert: 'sign' }) //=> -1234
   ```
 
 - `word` - swaps the location of words in a string...
   ```js
-  reverse('of... unicorns', { invert: 'word' }); //=> unicorns of...
+  reverse('of... unicorns', { invert: 'word' }) //=> unicorns of...
   ```
 
 ### `preserveZeros: {Boolean}`
 
-This property defaults to `false`. It specifies whether to enforce preceding zeros in the result of a number that contains trailing zeros. See [#3](https://github.com/whizkydee/type-reverse/issues/4) for more info. Note that the result gets converted to a string.
+This property defaults to `true`. It specifies whether to enforce preceding zeros in the result of a number that contains trailing zeros. See [#3](https://github.com/whizkydee/type-reverse/issues/4) for more info. Note that the result gets converted to a string. Disabling it would look like this...
 
 ```js
-reverse(240, { preserveZeros: true }); //=> "042"
+reverse(240, { preserveZeros: false }) //=> 42
 ```
 
 ## `callback: {Function}`
@@ -134,11 +134,11 @@ The callback takes in a function with two optional parameters that represent `in
 - `result` - the output from reversing the input
 
 ```js
-const text = 'dog';
+const text = 'dog'
 
 reverse(text, null, function(intitial, result) {
-  return `${intitial} was changed to ${result}`;
-}); //=> dog was changed to god
+  return intitial + ' was changed to ' + result
+}) //=> dog was changed to god
 ```
 
 ## Limits

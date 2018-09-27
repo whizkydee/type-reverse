@@ -10,8 +10,3 @@ insert_final_newline = true
 
 [*.md]
 trim_trailing_whitespace = false
-
-# 4 space indentation
-[**.{json, htaccess}]
-indent_style = space
-indent_size = 4
