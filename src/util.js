@@ -6,10 +6,9 @@ const is = {
   set: i => kindof(i) === 'set',
   array: i => kindof(i) === 'array',
   string: i => kindof(i) === 'string',
-  number: i => kindof(i) === 'number',
-  nodelist: i => kindof(i) === 'nodelist'
+  number: i => kindof(i) === 'number'
 };
 
-const supported = i => is.string(i) || is.number(i) || is.nodelist(i) || is.array(i) || is.set(i);
+const supported = i => is.string(i) || is.number(i) || is.array(i) || is.set(i);
 
 export { kindof, supported };

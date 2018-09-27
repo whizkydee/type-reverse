@@ -12,7 +12,7 @@
  *
  * @name reverse
  * @alias inverse
- * @param {String|Number|Array|Set|NodeList} `input`
+ * @param {String|Number|Array|Set} `input`
  * @param {?Object} `options`
  * @param {?Function} `callback`
  * @return {*}
@@ -95,7 +95,7 @@ function reverse(input, options = {}, callback) {
       break;
 
     case 'set': result = new Set(newReversedArray); break;
-    case 'array': case 'nodelist': result = newReversedArray; break;
+    case 'array': result = newReversedArray; break;
 
     default: result = reverse(input); break;
   }
