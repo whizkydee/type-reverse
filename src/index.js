@@ -35,7 +35,7 @@ function reverse(input, options = {}, callback) {
     );
 
   options.invert = options.invert || 'index';
-  options.preserveZeros = preserveZeros || false;
+  options.preserveZeros = preserveZeros || true;
   callback = callback || ((_, v) => v);
 
   let result;
@@ -43,7 +43,7 @@ function reverse(input, options = {}, callback) {
     case 'string':
       switch (options.invert) {
         case 'index': result = newReversedArray.join(''); break;
-        case 'word': result = input .split(' ').reverse().join(' '); break;
+        case 'word': result = input.split(' ').reverse().join(' '); break;
       }
       break;
 
