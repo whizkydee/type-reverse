@@ -7,19 +7,25 @@ describe('number reverse', () => {
     expect(reverse(number)).not.toBeUndefined();
   });
 
-  test('reverse a number with trailing zeros', () => {
+  test('reverse a number with trailing zeros and the option implicitly enabled', () => {
     const number = 9000;
-    expect(reverse(number)).toEqual(9);
+    expect(reverse(number)).toEqual('0009');
     expect(reverse(number)).not.toBeUndefined();
   });
 
-  test('reverse a number with trailing zeros and the option enabled', () => {
-    const number = 2000;
-    expect(reverse(number, { preserveZeros: true })).toBe('0002');
-    expect(reverse(number, { preserveZeros: true })).not.toBe(2);
+  test('reverse a number with trailing zeros and the option explicitly enabled', () => {
+    const number = 9000;
+    expect(reverse(number, { preserveZeros: true })).toEqual('0009');
+    expect(reverse(number, { preserveZeros: true })).not.toBeUndefined();
   });
 
-  test('reverse a negative number with trailing zeros and the option enabled', () => {
+  test('reverse a number with trailing zeros and the option disabled', () => {
+    const number = 2000;
+    expect(reverse(number, { preserveZeros: false })).toBe(2);
+    expect(reverse(number, { preserveZeros: false })).not.toBe('0002');
+  });
+
+  test('reverse a negative number with trailing zeros and the option explicitly enabled', () => {
     const number = -2000;
     expect(reverse(number, { preserveZeros: true, invert: 'sign' })).toEqual(
       '2000'
