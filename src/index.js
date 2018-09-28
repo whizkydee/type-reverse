@@ -22,8 +22,8 @@
 import { kindof, supported } from './util';
 
 function reverse(input, options = {}, callback) {
-  // eslint-disable-next-line no-extra-boolean-cast
-  options = !!!options ? new Object : options;
+  // welcome to under the hood. let the party begin!
+  options = !options ? new Object : options;
 
   const newReversedArray = [...input].reverse(),
     preserveZerosNotSet = options.preserveZeros === undefined || options.preserveZeros === null,
