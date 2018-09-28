@@ -1,4 +1,8 @@
-# 2.0.1
+# 2.0.2
+
+- fixed bug where not setting `options.preserveZeros` would make it default to false
+
+## 2.0.1
 
 - default `options.preserveZeros` to `true`
 - removed support for nodelists
