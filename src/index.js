@@ -26,7 +26,7 @@ function reverse(input, options = {}, callback) {
   options = !!!options ? new Object : options;
 
   const newReversedArray = [...input].reverse(),
-    preserveZeros = options.preserveZeros,
+    preserveZerosNotSet = options.preserveZeros === undefined || options.preserveZeros === null,
     minusRE = /^-/;
 
   if (input && !supported(input))
@@ -35,7 +35,7 @@ function reverse(input, options = {}, callback) {
     );
 
   options.invert = options.invert || 'index';
-  options.preserveZeros = preserveZeros || true;
+  options.preserveZeros = preserveZerosNotSet ? true : options.preserveZeros;
   callback = callback || ((_, v) => v);
 
   let result;
@@ -55,13 +55,13 @@ function reverse(input, options = {}, callback) {
       const containsTrailingZeros = /0+$/.test(positiveNumberAsString);
 
       // there's no need to stringify if...
-      // 1. the input contains trailing zeros, but the preserveZeros option is disabled
+      // 1. the input contains trailing zeros and the preserveZeros option is disabled
       // 2. the input doesn't contain trailing zeros, but the preserveZeros option is enabled
-      // 3. the input doesn't contain trailing zeros, and the preserveZeros option is disabled
+      // 3. the input doesn't contain trailing zeros and the preserveZeros option is disabled
       const noNeedToStringify =
-        (containsTrailingZeros && !preserveZeros) ||
-        (!containsTrailingZeros && preserveZeros) ||
-        (!containsTrailingZeros && !preserveZeros);
+        (containsTrailingZeros && !options.preserveZeros) ||
+        (!containsTrailingZeros && options.preserveZeros) ||
+        (!containsTrailingZeros && !options.preserveZeros);
 
       if (bigInt)
         throw new TypeError(
